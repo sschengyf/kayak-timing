@@ -1,7 +1,6 @@
 {
   "name": "kayak-timing",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:sschengyf/kayak-timing.git",
   "author": "Ivan Cheng <sschengyf@gmail.com>",
   "license": "UNLICENSED",
