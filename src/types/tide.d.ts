@@ -13,7 +13,7 @@ export interface Value {
   value: number;
 }
 
-export interface Tide {
+export interface TideData {
   metadata: Metadata;
   values: Value[];
 }

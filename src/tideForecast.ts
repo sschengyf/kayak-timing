@@ -1,16 +1,20 @@
 import axios from "axios";
-import { Tide } from "./types";
+import { TideData } from "./types";
 
 const TIDE_FORECAST_API_URL = "https://api.niwa.co.nz/tides/data";
 
-export const getTideForecast = () =>
+interface coordinate {
+  lat: string;
+  long: string;
+}
+
+export const getTideData = ({ lat, long }: coordinate) =>
   axios
-    .get<Tide>(`${TIDE_FORECAST_API_URL}`, {
+    .get<TideData>(`${TIDE_FORECAST_API_URL}`, {
       params: {
-        lat: "-39.97049163816615",
-        long: "174.96035766126963",
+        lat,
+        long,
         numberOfDays: 1,
-        startDate: "2022-09-05",
       },
       headers: {
         "x-apikey": process.env.NIWA_API_KEY as string,

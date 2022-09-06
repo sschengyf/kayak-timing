@@ -1,19 +1,19 @@
 import * as dotenv from "dotenv";
-// import { getWeatherForecast } from "./weatherForecast";
-import { getTideForecast } from "./tideForecast";
+import { getWeatherForecast } from "./weatherForecast";
+import { getTideData } from "./tideForecast";
 
 dotenv.config();
 
-// async function predictSuitableKayakTimes() {
-// const weatherForecastData = await getWeatherForecast();
-// console.log(weatherForecastData);
-// }
+async function predictSuitableKayakTimes() {
+  const weatherForecastData = await getWeatherForecast();
+  console.log(weatherForecastData);
+}
 
-// predictSuitableKayakTimes();
+predictSuitableKayakTimes();
 
 async function predictTides() {
-  const tides = await getTideForecast();
-  console.log(tides);
+  const tideData = await getTideData({ lat: "-36.8329145419162", long: "174.79377033086192" });
+  console.log(tideData);
 }
 
 predictTides();
