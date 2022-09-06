@@ -28,3 +28,4 @@ jobs:
         run: yarn ts-node ./src/index.ts
         env:
           ACCU_WEATHER_API_KEY: ${{ secrets.ACCU_WEATHER_API_KEY }}
+          NIWA_API_KEY: ${{ secrets.NIWA_API_KEY }}
