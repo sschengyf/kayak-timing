@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 import { getWeatherForecast } from "./weatherForecast";
+import { getTideForecast } from "./tideForecast";
 
 dotenv.config();
 
@@ -9,3 +10,10 @@ async function predictSuitableKayakTimes() {
 }
 
 predictSuitableKayakTimes();
+
+async function predictTides() {
+  const tides = await getTideForecast();
+  console.log(tides);
+}
+
+predictTides();

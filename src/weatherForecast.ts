@@ -5,7 +5,7 @@ const WEATHER_FORECAST_API_URL = "http://dataservice.accuweather.com/forecasts/v
 
 export const getWeatherForecast = () =>
   axios
-    .get<[HourlyForecast]>(`${WEATHER_FORECAST_API_URL}`, {
+    .get<HourlyForecast[]>(`${WEATHER_FORECAST_API_URL}`, {
       params: {
         apikey: process.env.ACCU_WEATHER_API_KEY,
         details: true,
