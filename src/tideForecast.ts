@@ -8,13 +8,13 @@ interface coordinate {
   long: string;
 }
 
-export const getTideData = ({ lat, long }: coordinate) =>
+export const getTideForecast = ({ lat, long }: coordinate) =>
   axios
     .get<TideData>(`${TIDE_FORECAST_API_URL}`, {
       params: {
         lat,
         long,
-        numberOfDays: 1,
+        numberOfDays: 2,
       },
       headers: {
         "x-apikey": process.env.NIWA_API_KEY as string,
@@ -24,3 +24,8 @@ export const getTideData = ({ lat, long }: coordinate) =>
     .catch(function (err) {
       console.error(err);
     });
+
+export const onlyHighTide = ({ metadata, values }: TideData) => {
+  const averageTideHeight = Number(metadata.height.replace(/[^\d\.]/g, ""));
+  return values.filter(({ value }) => value > averageTideHeight);
+};
