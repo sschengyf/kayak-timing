@@ -1,4 +1,5 @@
 import { Value as Tide, HourlyForecast } from "./types";
+import { toLocalTime } from "./time";
 
 const ONE_MIN = 60 * 1000;
 const THIRTY_MINS = ONE_MIN * 30;
@@ -35,4 +36,22 @@ export const matchHighTideWithGoodWeather = (tides: Tide[], weather: HourlyForec
 
     return matches;
   }, []);
+};
+
+export const printMatches = (matches: Match[]) => {
+  console.log(`Found ${matches.length} good kayaking time slots.`);
+
+  matches.forEach(({ tide, weather }) => {
+    console.log(`High tide at ${toLocalTime(tide.time)}.`);
+    weather.forEach(
+      ({
+        DateTime,
+        Wind: {
+          Speed: { Value, Unit },
+        },
+      }) => {
+        console.log(`Wind speed will be ${Value}${Unit} at ${toLocalTime(DateTime)}.`);
+      }
+    );
+  });
 };
