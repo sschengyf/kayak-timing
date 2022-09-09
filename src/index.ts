@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import { from, forkJoin, map } from "rxjs";
 import { getWeatherForecast } from "./weatherForecast";
 import { getTideForecast, onlyHighTide } from "./tideForecast";
+import { matchHighTideWithGoodWeather } from "./matcher";
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ function predictSuitableKayakTimes() {
   );
 
   forkJoin({ weather: weatherForecast, highTides: highTideForecast }).subscribe({
-    next: (value) => console.log(value),
+    next: ({ highTides, weather }) => highTides && weather && matchHighTideWithGoodWeather(highTides, weather),
   });
 }
 
