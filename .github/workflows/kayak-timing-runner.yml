@@ -25,12 +25,15 @@ jobs:
         run: yarn install
 
       - name: Run predictor
-        run: yarn ts-node ./src/index.ts
+        id: run_predictor
+        run: |
+          yarn ts-node ./src/index.ts | grep 'Kayak timing prediction report: ' \
+          | sed 's/^.*Kayak timing prediction report: //' | xargs -I {} echo "::set-output name=prediction::{}"
         env:
           ACCU_WEATHER_API_KEY: ${{ secrets.ACCU_WEATHER_API_KEY }}
           NIWA_API_KEY: ${{ secrets.NIWA_API_KEY }}
 
-      - name: Send forecast via email
+      - name: Send prediction via email
         uses: dawidd6/action-send-mail@v3
         with:
           # Required mail server address if not connection_url:
@@ -44,10 +47,10 @@ jobs:
           # Optional (recommended) mail server password:
           password: ${{secrets.MAIL_PASSWORD}}
           # Required mail subject:
-          subject: Do not reply - Your kayak timing forecast
+          subject: Do not reply - Your kayak timing prediction
           # Required recipients' addresses:
           to: ${{ secrets.MAIL_RECIPIENTS }}
           # Required sender full name (address can be skipped):
           from: ${{ secrets.MAIL_SENDER }}
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully!
+          body: ${{ steps.run_predictor.outputs.prediction }}
