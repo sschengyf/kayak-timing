@@ -27,14 +27,7 @@ export const matchHighTideWithGoodWeather = (tides: Tide[], weather: HourlyForec
       return hourlyForecast.Wind.Speed.Value < 15;
     });
 
-    if (goodWeather.length > 0) {
-      matches.push({
-        tide,
-        weather: goodWeather,
-      });
-    }
-
-    return matches;
+    return [...matches, ...(goodWeather.length > 0 ? [{ tide, weather: goodWeather }] : [])];
   }, []);
 };
 
