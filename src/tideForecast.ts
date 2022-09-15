@@ -1,14 +1,15 @@
 import axios from "axios";
-import { TideData } from "./types";
+import { getSunrise, getSunset } from "sunrise-sunset-js";
+import { TideData, Value } from "./types";
 
 const TIDE_FORECAST_API_URL = "https://api.niwa.co.nz/tides/data";
 
-interface coordinate {
-  lat: string;
-  long: string;
+interface Coordinate {
+  lat: number;
+  long: number;
 }
 
-export const getTideForecast = ({ lat, long }: coordinate) =>
+export const getTideForecast = ({ lat, long }: Coordinate) =>
   axios
     .get<TideData>(`${TIDE_FORECAST_API_URL}`, {
       params: {
@@ -27,5 +28,15 @@ export const getTideForecast = ({ lat, long }: coordinate) =>
 
 export const onlyHighTide = ({ metadata, values }: TideData) => {
   const averageTideHeight = Number(metadata.height.replace(/[^\d\.]/g, ""));
+
   return values.filter(({ value }) => value > averageTideHeight);
 };
+
+export const onlyDaytimeTide =
+  (values: Value[]) =>
+  ({ lat, long }: Coordinate) => {
+    const nextSunrise = getSunrise(lat, long);
+    const sunset = getSunset(lat, long);
+
+    return values.filter(({ time }) => !(new Date(time) > sunset && new Date(time) < nextSunrise));
+  };

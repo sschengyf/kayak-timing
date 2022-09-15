@@ -14,7 +14,8 @@
   "dependencies": {
     "axios": "^0.27.2",
     "dotenv": "^16.0.2",
-    "rxjs": "^7.5.6"
+    "rxjs": "^7.5.6",
+    "sunrise-sunset-js": "^2.2.1"
   },
   "scripts": {
     "format": "prettier '**/*.ts' --write"

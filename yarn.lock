@@ -150,6 +150,11 @@ rxjs@^7.5.6:
   dependencies:
     tslib "^2.1.0"
 
+sunrise-sunset-js@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/sunrise-sunset-js/-/sunrise-sunset-js-2.2.1.tgz#bf541aab71b9215901fb6dee260e946fb3c7a80a"
+  integrity sha512-ErsvmxoTCZRacVPtlchkrTAR8qxypBy0BDrrv9LMugLuF0AykcS5pQsP1EhQJHgumxrTTSI8N8KJkQMVJ6dEPw==
+
 ts-node@^10.9.1:
   version "10.9.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
