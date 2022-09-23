@@ -5,5 +5,5 @@ on:
 
 jobs:
   run-predictor:
-    uses: ./.github/workflows/kayak-timing-predictor.yml
+    uses: ./.github/workflows/predict-kayak-timing.yml
     secrets: inherit
