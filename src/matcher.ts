@@ -32,6 +32,8 @@ export const matchHighTideWithGoodWeather = (tides: Tide[], weather: HourlyForec
 };
 
 export const printMatches = (matches: Match[]) => {
+  if (matches.length === 0) return;
+
   const messages = ["Kayak timing prediction report:"];
   messages.push(`Found ${matches.length} good kayaking time slots in the short future.`);
 

@@ -35,6 +35,7 @@ jobs:
           NIWA_API_KEY: ${{ secrets.NIWA_API_KEY }}
 
       - name: Send prediction via email
+        if: ${{ steps.run_predictor.outputs.prediction }}
         uses: dawidd6/action-send-mail@v3
         with:
           # Required mail server address if not connection_url:
