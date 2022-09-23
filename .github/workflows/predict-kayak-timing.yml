@@ -1,8 +1,7 @@
-name: Run kayak timing predictor
+name: Kayak timing predictor
 
 on:
-  schedule:
-    - cron: "0 0,6,12,21 * * *"
+  workflow_call:
 
 jobs:
   run-predictor:

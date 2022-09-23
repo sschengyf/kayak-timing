@@ -1,0 +1,10 @@
+name: Schedule kayak timing predictor
+
+on:
+  schedule:
+    - cron: "0 0,6,12,21 * * *"
+
+jobs:
+  run-predictor:
+    uses: ./.github/workflows/kayak-timing-predictor.yml
+    secrets: inherit

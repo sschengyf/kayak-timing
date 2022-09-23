@@ -1,0 +1,9 @@
+name: Run kayak timing predictor
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-predictor:
+    uses: ./.github/workflows/kayak-timing-predictor.yml
+    secrets: inherit
